@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>frontend-main</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>frontend-delivery</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <!--dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>angular-app</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies-->
+
+    <build>
+        <plugins>
+            <!-- <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>cl.redbanc.SpringAngularDemoApplication</mainClass>
+                    <layout>WAR</layout>
+                    <finalName>frontend-delivery-${project.version}</finalName>
+                    <skip>false</skip>
+                </configuration>
+            </plugin> -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <warSourceDirectory>WebContent</warSourceDirectory>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>3.1.0.Final</version>
+                <configuration>
+                    <skip>true</skip> <!-- Opcional: Para saltarse la ejecución del plugin en ciertos
+                    momentos -->
+                    <hostname>localhost</hostname> <!-- Hostname del servidor WildFly -->
+                    <port>8080</port> <!-- Puerto del servidor WildFly -->
+                    <username>admin</username> <!-- Nombre de usuario para autenticarse en el
+                    servidor -->
+                    <password>password</password> <!-- Contraseña para autenticarse en el servidor -->
+                    <name>frontend</name> <!-- Nombre de la aplicación -->
+                    <runtimeName>frontend.war</runtimeName> <!-- Nombre del archivo WAR generado -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
